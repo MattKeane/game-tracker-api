@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MattKeane/game-tracker-api/issues"
   },
-  "homepage": "https://github.com/MattKeane/game-tracker-api#readme"
+  "homepage": "https://github.com/MattKeane/game-tracker-api#readme",
+  "dependencies": {
+    "apollo-server": "^2.19.2"
+  }
 }
