@@ -3,12 +3,14 @@ const { ApolloServer } = require("apollo-server")
 const fs = require("fs")
 const path = require("path")
 const Query = require ("./resolvers/Query")
+const Mutation = require ("./resolvers/Mutation")
 
 // Connect to Database
 require("./db/db")
 
 const resolvers = {
 	Query,
+	Mutation,
 }
 
 const server = new ApolloServer({
