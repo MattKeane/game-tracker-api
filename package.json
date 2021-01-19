@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/MattKeane/game-tracker-api#readme",
   "dependencies": {
-    "apollo-server": "^2.19.2"
+    "apollo-server": "^2.19.2",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.11.12"
   }
 }
