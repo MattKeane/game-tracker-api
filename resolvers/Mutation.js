@@ -13,6 +13,26 @@ async function signUp(parent, args, context) {
 	}
 }
 
+async function login(parent, args, context) {
+	const user = await context.models.user.findOne({ email: args.email })
+	if (!user) {
+		throw new Error("Invalid email or password")
+	}
+
+	const valid = await bcrypt.compare(args.password, user.password)
+	if (!valid) {
+		throw new Error("Invalid email or password")
+	} else {
+		const token = jwt.sign({ userId: user.id }, APP_SECRET)
+
+		return {
+			token,
+			user
+		}
+	}
+}
+
 module.exports = {
 	signUp,
+	login,
 }
