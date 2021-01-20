@@ -12,7 +12,7 @@ async function signUp(parent, args) {
 	const token = jwt.sign({ userId: createdUser.id }, APP_SECRET)
 	return {
 		token,
-		createdUser
+		user: createdUser
 	}
 }
 
