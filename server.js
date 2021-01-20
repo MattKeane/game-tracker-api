@@ -4,6 +4,7 @@ const fs = require("fs")
 const path = require("path")
 const Query = require ("./resolvers/Query")
 const Mutation = require ("./resolvers/Mutation")
+const { getUserId } = require("./utils")
 
 // Connect to Database
 require("./db/db")
@@ -19,6 +20,15 @@ const server = new ApolloServer({
 		"utf8"
 	),
 	resolvers,
+	context: ({ req }) => {
+		return {
+			...req,
+			userId:
+				req && req.headers.authorization
+					? getUserId(req)
+					: null
+		}
+	}
 })
 
 server
