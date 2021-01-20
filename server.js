@@ -5,6 +5,7 @@ const path = require("path")
 const Query = require ("./resolvers/Query")
 const Mutation = require ("./resolvers/Mutation")
 const { getUserId } = require("./utils")
+const models = require("./models/models")
 
 // Connect to Database
 require("./db/db")
@@ -23,6 +24,7 @@ const server = new ApolloServer({
 	context: ({ req }) => {
 		return {
 			...req,
+			models,
 			userId:
 				req && req.headers.authorization
 					? getUserId(req)

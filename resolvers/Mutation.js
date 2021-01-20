@@ -2,13 +2,10 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { APP_SECRET, getUserId } = require("../utils")
 
-// importing models
-const User = require("../models/user")
-
-async function signUp(parent, args) {
+async function signUp(parent, args, context) {
 	const password = await bcrypt.hash(args.password, 10)
 	const userToCreate = { ...args, password }
-	const createdUser = await User.create(userToCreate)
+	const createdUser = await context.models.user.create(userToCreate)
 	const token = jwt.sign({ userId: createdUser.id }, APP_SECRET)
 	return {
 		token,
