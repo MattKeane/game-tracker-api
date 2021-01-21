@@ -6,6 +6,7 @@ type Query {
 type Mutation {
 	signUp(firstName: String!, lastName: String!, userName: String!, email: String!, password: String!): AuthPayload
 	login(email: String!, password: String!): AuthPayload
+	addGame(title: String!, minPlayers: Int!, maxPlayers: Int!): Game!
 }
 
 type User {
@@ -19,4 +20,10 @@ type User {
 type AuthPayload {
 	token: String
 	user: User
+}
+
+type Game {
+	title: String!
+	minPlayers: Int!
+	maxPlayers: Int!
 }
