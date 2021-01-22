@@ -32,7 +32,13 @@ async function login(parent, args, context) {
 	}
 }
 
+async function addGame(parent, args, context) {
+	const createdGame = await context.models.game.create(args)
+	return createdGame
+}
+
 module.exports = {
 	signUp,
 	login,
+	addGame,
 }
