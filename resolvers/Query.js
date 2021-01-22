@@ -8,7 +8,13 @@ async function currentUser(parent, args, context) {
 	return user
 }
 
+async function games(parent, args, context) {
+	const allGames = context.models.game.find()
+	return allGames
+}
+
 module.exports = {
 	test,
-	currentUser
+	currentUser,
+	games,
 }
