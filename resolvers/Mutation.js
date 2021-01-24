@@ -37,8 +37,28 @@ async function addGame(parent, args, context) {
 	return createdGame
 }
 
+async function addGameSession(parent, args, context) {
+	const winner = await context.models.user.findById(args.winner)
+	const players = []
+	for (const player of args.players) {
+		const playerToAdd = await context.models.user.findById(player)
+		players.push(playerToAdd)
+	}
+	const game = await context.models.game.findById(args.game)
+	const sessionToCreate = { ...args, winner, players, game }
+	let createdSession = await context
+		.models
+		.gameSession
+		.create(sessionToCreate)
+	createdSession.populate("game")
+		.populate("players")
+		.populate("winner")
+	return createdSession
+}
+
 module.exports = {
 	signUp,
 	login,
+	addGameSession,
 	addGame,
 }

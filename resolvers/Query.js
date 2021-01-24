@@ -13,8 +13,20 @@ async function games(parent, args, context) {
 	return allGames
 }
 
+async function gameSessions(parent, args, context) {
+	const allSessions = await context
+		.models
+		.gameSession
+		.find()
+		.populate("game")
+		.populate("players")
+		.populate("winner")
+	return allSessions
+}
+
 module.exports = {
 	test,
 	currentUser,
 	games,
+	gameSessions,
 }

@@ -2,12 +2,14 @@ type Query {
 	test: String!
 	currentUser: User
 	games: [Game!]!
+	gameSessions: [GameSession!]!
 }
 
 type Mutation {
 	signUp(firstName: String!, lastName: String!, userName: String!, email: String!, password: String!): AuthPayload
 	login(email: String!, password: String!): AuthPayload
 	addGame(title: String!, minPlayers: Int!, maxPlayers: Int!): Game!
+	addGameSession(game: ID!, players: [ID!]!, winner: ID!, notes: String): GameSession!
 }
 
 type User {
@@ -28,4 +30,12 @@ type Game {
 	title: String!
 	minPlayers: Int!
 	maxPlayers: Int!
+}
+
+type GameSession {
+	game: Game!
+	players: [User!]!
+	winner: User!
+	date: Int!
+	notes: String
 }
